@@ -1,7 +1,8 @@
-from flask import Flask,request,jsonify 
+from flask import Flask,request,jsonify,Response 
 from flask_pymongo import PyMongo
-
+import datetime
 import json 
+from bson import  json_util
 app=Flask(__name__)
 app.config["MONGO_URI"]='mongodb://localhost/donations'
 mongo=PyMongo(app)
@@ -16,17 +17,39 @@ def create_user():
             'password':password,
             'email':email
         })
-        responde={
+        response={
             'id':str(id),
             'username':username,
             'password':password,
             'email':email
         }
+        print(response)
         return response
     else:
         return not_found()
     return  {'message':'recived'}
-    
+@app.route('/donations',methods=['POST'])
+def donate():
+    username=request.json['username']
+    amount=request.json['amount']
+    date=str(datetime.datetime.now())
+    if(username and email and password):
+        id=mongo.db.donations.insert({
+            'username':username,
+            'amount':amount,
+            'date':date
+        })
+        response={
+            'message':'Donation saved'
+        }
+        return response
+    else:
+        return {'message': 'Error'}
+@app.route('/donations',methods=['GET'])
+def get_donations():
+    donations=mongo.db.donations.find()
+    response=json_util.dumps(donations)
+    return Response(response,mimetype='application/json')
 @app.errorhandler(404)
 def not_found(error=None):
     response=jsonify({
