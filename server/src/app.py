@@ -28,6 +28,23 @@ def create_user():
     else:
         return not_found()
     return  {'message':'recived'}
+@app.route('/user/<id>',methods=['PUT'])
+def update_user(id):
+    username=request.json['username']
+    password=request.json['password']
+    email=request.json['email']
+    if  username and email and password:
+        mongo.db.users.update_one({'_id': ObjectId(id)},{'$set':{
+            'username':username,
+            'password':password,
+            'email':email
+        }})
+        response = jsonify({menssage:'User '+id+' was updated successfully'})
+        return response
+    else:
+        response = jsonify({menssage:'User '+id+' does not exist'})
+        return response
+
 @app.route('/donations',methods=['POST'])
 def donate():
     username=request.json['username']
