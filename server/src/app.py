@@ -76,5 +76,11 @@ def not_found(error=None):
     response.status_code=404
     return response
 
+def delete_user(id):
+    mongo.db.users.delete_one({'id': Objected(id)})
+    jsonify({'message': 'usuario' + id + 'fue eliminado'})
+    return 'delete'
+
+
 if __name__=="__main__":
     app.run(debug=True)
