@@ -12,17 +12,17 @@ An application that allows us to donate to the people most affected by COVID  19
 
 ## Captures
 
-![post ]("images/post1.png")
+![post ](images/post1.png)
 
-![post2 ]("images/post2.png")
+![post2 ](images/post2.png)
 
-![post]("images/donation.png")
+![post](images/donation.png)
 
-![get ]("images/donationGet.png")
+![get ](images/donationGet.png)
 
-![delete ]("images/delete.png")
+![delete ](images/delete.png)
 
-![put ]("images/put.png")
+![put ](images/put.png)
 
 
 ## Authors
