@@ -35,15 +35,15 @@ def update_user(id):
     password=request.json['password']
     email=request.json['email']
     if  username and email and password:
-        mongo.db.users.update_one({'_id': ObjectId(id)},{'$set':{
+        mongo.db.users.update_one({'_id': id  },{'$set':{
             'username':username,
             'password':password,
             'email':email
         }})
-        response = jsonify({menssage:'User '+id+' was updated successfully'})
+        response = jsonify({"menssage":'User '+id+' was updated successfully'})
         return response
     else:
-        response = jsonify({menssage:'User '+id+' does not exist'})
+        response = jsonify({"menssage":'User '+id+' does not exist'})
         return response
 
 @app.route('/donations',methods=['POST'])
@@ -51,7 +51,7 @@ def donate():
     username=request.json['username']
     amount=request.json['amount']
     date=str(datetime.datetime.now())
-    if(username and email and password):
+    if(username  and amount):
         id=mongo.db.donations.insert({
             'username':username,
             'amount':amount,
@@ -70,10 +70,10 @@ def get_donations():
     return Response(response,mimetype='application/json')
 
 
-@app.route('users/<id>')
+@app.route('/users/<id>',methods=['DELETE'])
 def delete_user(id):
-    mongo.db.users.delete_one({'id': Objected(id)})
-    reponse =jsonify({'message': 'User' + id + 'was Delate successfully'})
+    mongo.db.users.delete_one({'id':id})
+    response =jsonify({'message': 'User' + id + 'was Delate successfully'})
     return response
 
 

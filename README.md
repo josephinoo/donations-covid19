@@ -10,8 +10,23 @@ An application that allows us to donate to the people most affected by COVID  19
 - Dart-Flutter 
 - Datebase-MongoDB
 
+## Captures
+
+![post ]("images/post1.png")
+
+![post2 ]("images/post2.png")
+
+![post]("images/donation.png")
+
+![get ]("images/donationGet.png")
+
+![delete ]("images/delete.png")
+
+![put ]("images/put.png")
+
 
 ## Authors
 - Joseph Avila
 - Angel Jumbo
 - Daniel Sanchez
+
