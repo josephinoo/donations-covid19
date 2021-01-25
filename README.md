@@ -1,5 +1,5 @@
 
-<img src="images/logo.png" align="right" height="200" width="200"  />
+<img src="images/logo.png" align="right" height="300" width="350"  />
 
 # Donations-APP 🚀🚀
 
