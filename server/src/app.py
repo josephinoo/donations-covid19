@@ -28,6 +28,7 @@ def create_user():
     else:
         return not_found()
     return  {'message':'recived'}
+
 @app.route('/user/<id>',methods=['PUT'])
 def update_user(id):
     username=request.json['username']
@@ -67,6 +68,15 @@ def get_donations():
     donations=mongo.db.donations.find()
     response=json_util.dumps(donations)
     return Response(response,mimetype='application/json')
+
+
+@app.route('users/<id>')
+def delete_user(id):
+    mongo.db.users.delete_one({'id': Objected(id)})
+    reponse =jsonify({'message': 'User' + id + 'was Delate successfully'})
+    return response
+
+
 @app.errorhandler(404)
 def not_found(error=None):
     response=jsonify({
@@ -76,10 +86,6 @@ def not_found(error=None):
     response.status_code=404
     return response
 
-def delete_user(id):
-    mongo.db.users.delete_one({'id': Objected(id)})
-    jsonify({'message': 'usuario' + id + 'fue eliminado'})
-    return 'delete'
 
 
 if __name__=="__main__":
