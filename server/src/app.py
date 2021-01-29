@@ -1,11 +1,26 @@
-from flask import Flask,request,jsonify,Response 
+from flask import Flask,request,jsonify,Response
 from flask_pymongo import PyMongo
 import datetime
-import json 
+import json
 from bson import  json_util
 app=Flask(__name__)
 app.config["MONGO_URI"]='mongodb://localhost/donations'
 mongo=PyMongo(app)
+
+@app.route("/login",methods=['POST'])
+def login():
+    users=mongo.db.users
+    login_user=user.find_one({'name': request.form['username']})
+    password=login_user['password'].encode('utf8')
+    if login_user:
+        if(password==request.form['password']):
+            return 'ok'
+        else:
+            return "Invalid username/password conbination"
+
+
+
+    return ''
 @app.route('/users',methods=['POST'])
 def create_user():
     username=request.json['username']
