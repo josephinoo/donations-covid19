@@ -18,9 +18,6 @@ def login():
         else:
             return "Invalid username/password conbination"
 
-
-
-    return ''
 @app.route('/users',methods=['POST'])
 def create_user():
     username=request.json['username']
@@ -44,6 +41,7 @@ def create_user():
         return not_found()
     return  {'message':'recived'}
 
+
 @app.route('/user/<id>',methods=['PUT'])
 def update_user(id):
     username=request.json['username']
@@ -60,6 +58,8 @@ def update_user(id):
     else:
         response = jsonify({"menssage":'User '+id+' does not exist'})
         return response
+
+
 
 @app.route('/donations',methods=['POST'])
 def donate():
@@ -78,6 +78,9 @@ def donate():
         return response
     else:
         return {'message': 'Error'}
+
+
+
 @app.route('/donations',methods=['GET'])
 def get_donations():
     donations=mongo.db.donations.find()
