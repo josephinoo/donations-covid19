@@ -1,28 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-//import 'package:validators/validators.dart' as validator;
-//import 'model.dart';
-//import 'result.dart';
 
-class Inicio extends StatelessWidget {
+class DonarForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Inicio"),
-          flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[
-              Color(0xFF17ead9),
-              Color(0xFF00d4ff)
-            ]))
-            ),
-        ),
-        backgroundColor: Color(0xFFFFFFFF),
-        body: TestForm(),);
+      appBar: AppBar(
+        title: Text("Confirmar Donación"),
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[Color(0xFF17ead9), Color(0xFF00d4ff)]))),
+      ),
+      backgroundColor: Color(0xFFFFFFFF),
+      body: Center(
+          child: Column(
+        children: <Widget>[
+          Image.asset(
+            'assets/thanks.png',
+            width: 330,
+            height: 330,
+          ),
+          TestForm()
+        ],
+      )),
+    );
   }
 }
 
@@ -38,7 +42,7 @@ class _TestFormState extends State<TestForm> {
   @override
   Widget build(BuildContext context) {
     final halfMediaWidth = MediaQuery.of(context).size.width / 2.0;
-    
+
     return Form(
       key: _formKey,
       child: Column(
@@ -83,7 +87,6 @@ class _TestFormState extends State<TestForm> {
               ],
             ),
           ),
-          
           MyTextFormField(
             hintText: 'Email',
             isEmail: true,
@@ -97,7 +100,6 @@ class _TestFormState extends State<TestForm> {
               //model.email = value;
             },
           ),
-          
           MyTextFormField(
             hintText: 'Password',
             isPassword: true,
@@ -112,14 +114,14 @@ class _TestFormState extends State<TestForm> {
               //model.password = value;
             },
           ),
-          
           MyTextFormField(
             hintText: 'Confirm Password',
             isPassword: true,
             validator: (String value) {
               if (value.length < 7) {
                 return 'Password should be minimum 7 characters';
-              } /*else if (model.password != null && value != model.password) {
+              }
+              /*else if (model.password != null && value != model.password) {
                 print(value);
                 print(model.password);
                 return 'Password not matched';
@@ -127,10 +129,10 @@ class _TestFormState extends State<TestForm> {
               return null;
             },
           ),
-          
           RaisedButton(
             color: Colors.blueAccent,
-            onPressed: () {/*
+            onPressed: () {
+              /*
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                  Navigator.push(
@@ -140,7 +142,7 @@ class _TestFormState extends State<TestForm> {
               }*/
             },
             child: Text(
-              'Sign Up',
+              'Confirmar',
               style: TextStyle(
                 color: Colors.white,
               ),
@@ -151,7 +153,6 @@ class _TestFormState extends State<TestForm> {
     );
   }
 }
-
 
 class MyTextFormField extends StatelessWidget {
   final String hintText;
