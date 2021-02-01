@@ -41,55 +41,40 @@ class _TestFormState extends State<TestForm> {
 
   @override
   Widget build(BuildContext context) {
-    final halfMediaWidth = MediaQuery.of(context).size.width / 2.0;
-
-    return Form(
+    //final halfMediaWidth = MediaQuery.of(context).size.width / 2.0;
+    
+    return Center (child: Container (
+      margin: EdgeInsets.only(left: 30, top: 100, right: 30, bottom: 50),
+      height: 200,//double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10)
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      
+      child: Form(
       key: _formKey,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Container(
-            alignment: Alignment.topCenter,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.topCenter,
-                  width: halfMediaWidth,
-                  child: MyTextFormField(
-                    hintText: 'First Name',
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return 'Enter your first name';
-                      }
-                      return null;
-                    },
-                    onSaved: (String value) {
-                      //model.firstName = value;
-                    },
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.topCenter,
-                  width: halfMediaWidth,
-                  child: MyTextFormField(
-                    hintText: 'Last Name',
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return 'Enter your last name';
-                      }
-                      return null;
-                    },
-                    onSaved: (String value) {
-                      //model.lastName = value;
-                    },
-                  ),
-                )
-              ],
-            ),
-          ),
+          
           MyTextFormField(
-            hintText: 'Email',
-            isEmail: true,
+            hintText: 'Cantidad',
+            //isEmail: true,
             validator: (String value) {
               /*if (!validator.isEmail(value)) {
                 return 'Please enter a valid email';
@@ -100,9 +85,10 @@ class _TestFormState extends State<TestForm> {
               //model.email = value;
             },
           ),
+          /*
           MyTextFormField(
             hintText: 'Password',
-            isPassword: true,
+            //isPassword: true,
             validator: (String value) {
               if (value.length < 7) {
                 return 'Password should be minimum 7 characters';
@@ -114,32 +100,32 @@ class _TestFormState extends State<TestForm> {
               //model.password = value;
             },
           ),
+          
           MyTextFormField(
             hintText: 'Confirm Password',
-            isPassword: true,
+            //isPassword: true,
             validator: (String value) {
               if (value.length < 7) {
                 return 'Password should be minimum 7 characters';
-              }
-              /*else if (model.password != null && value != model.password) {
+              } /*else if (model.password != null && value != model.password) {
                 print(value);
                 print(model.password);
                 return 'Password not matched';
               }*/
               return null;
             },
-          ),
+          ),*/
+          
           RaisedButton(
-            color: Colors.blueAccent,
+            color: Color(0xFF00d4ff),
             onPressed: () {
-              /*
               if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
+                _formKey.currentState.save();/*
                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Result(model: this.model)));
-              }*/
+                        builder: (context) => Result(model: this.model)));*/
+              }
             },
             child: Text(
               'Confirmar',
@@ -150,9 +136,12 @@ class _TestFormState extends State<TestForm> {
           )
         ],
       ),
-    );
+    )
+    
+    ));
   }
 }
+
 
 class MyTextFormField extends StatelessWidget {
   final String hintText;

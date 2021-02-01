@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../pages/DonarForm.dart';
+import 'DonarForm.dart';
 
 class SelectionCentre extends StatelessWidget {
   @override
@@ -19,25 +21,28 @@ class SelectionCentre extends StatelessWidget {
           child: Center(
               child: Column(
             children: <Widget>[
-              _cardCentre(),
-              _cardCentre(),
-              _cardCentre(),
-              _cardCentre(),
-              _cardCentre(),
-              _cardCentre(),
-              _cardCentre(),
-              _cardCentre()
+              _cardCentre(context),
+              _cardCentre(context),
+              _cardCentre(context),
+              _cardCentre(context),
+              _cardCentre(context),
+              _cardCentre(context),
+              _cardCentre(context),
+              _cardCentre(context)
             ],
           )),
         ));
   }
 
-  Widget _cardCentre() {
+  Widget _cardCentre(BuildContext context) {
     return Card(
+      
       elevation: 5,
       child: Container(
+        
         padding: EdgeInsets.all(20),
-        child: Column(
+        child:InkWell( 
+          child: Column(
           children: <Widget>[
             Text(
               "Centro de Salud",
@@ -48,6 +53,12 @@ class SelectionCentre extends StatelessWidget {
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin magna ullamcorper ligula eleifend faucibus. Duis sed leo diam. Aliquam.")
           ],
         ),
+        onTap: (){
+          Navigator.of(context).push( MaterialPageRoute(
+            builder: (context) =>
+              DonarForm()));
+        },
+      )
       ),
     );
   }
