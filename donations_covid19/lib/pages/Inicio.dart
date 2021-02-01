@@ -7,6 +7,16 @@ class Inicio extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text("Inicio"),
+          flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[
+              Color(0xFF17ead9),
+              Color(0xFF00d4ff)
+            ]))
+            ),
         ),
         backgroundColor: Color(0xFFFFFFFF),
         body: Center(
@@ -35,16 +45,28 @@ class Inicio extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.all(0),
-                child: FlatButton(
+                child: RaisedButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: Text(
-                    'DONAR',
-                    style: TextStyle(fontSize: 50.0),
-                  ),
-                  color: Colors.blueAccent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Image.asset(
+                                  'assets/dono.png',
+                                  width: 50,
+                                  height: 50,
+                                )),
+                    
+                    Text(
+                    'Donar',
+                    style: TextStyle(fontSize: 40.0),
+                  )]),
+                  color: Color(0xFF00d4ff),//0xFF6078ea
                   textColor: Colors.white,
+                  
                   onPressed: () {},
                 ),
               ),
