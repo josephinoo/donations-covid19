@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' show json;
 //import 'package:validators/validators.dart' as validator;
 //import 'model.dart';
 //import 'result.dart';
@@ -54,7 +56,13 @@ class _TestFormState extends State<TestForm> {
   @override
   Widget build(BuildContext context) {
     //final halfMediaWidth = MediaQuery.of(context).size.width / 2.0;
-    int _value = 1;
+    int _value = 5;
+    var cardnumber;
+    var cardholder;
+    var cardcvv;
+    var cardexpdate;
+    var amount;
+    var username="octajos";
     
     return Center (child: Container (
       margin: EdgeInsets.only(left: 30, top: 100, right: 30, bottom: 50),
@@ -96,6 +104,7 @@ class _TestFormState extends State<TestForm> {
             },
             onSaved: (String value) {
               //model.email = value;
+              cardnumber=value;
             },
           ),
 
@@ -116,6 +125,7 @@ class _TestFormState extends State<TestForm> {
                   return null;
                 },
                 onSaved: (String value) {
+                  cardexpdate=value;
                   //model.email = value;
                 },
               )),
@@ -132,6 +142,7 @@ class _TestFormState extends State<TestForm> {
                   return null;
                 },
                 onSaved: (String value) {
+                  cardcvv=value;
                   //model.email = value;
                 },
               )),
@@ -149,6 +160,7 @@ class _TestFormState extends State<TestForm> {
               return null;
             },
             onSaved: (String value) {
+              cardholder=value;
               //model.email = value;
             },
           ),
@@ -187,24 +199,24 @@ class _TestFormState extends State<TestForm> {
               items: [
                 DropdownMenuItem(
                   child: Text("5 dólares"),
-                  value: 1,
+                  value: 5,
                 ),
                 DropdownMenuItem(
                   child: Text("10 dólares"),
-                  value: 2,
+                  value: 10,
                 ),
                 DropdownMenuItem(
                   child: Text("25 dólares"),
-                  value: 3
+                  value: 25
                 ),
                 DropdownMenuItem(
                     child: Text("50 dólares"),
-                    value: 4
+                    value: 50
                 )
               ],
               onChanged: (value) {
                 setState(() {
-                  //_value = value;
+                  _value = value;
                 });
               }),),
 
@@ -214,13 +226,30 @@ class _TestFormState extends State<TestForm> {
           
           RaisedButton(
             color: Color(0xFF00d4ff),
-            onPressed: () {
+            onPressed: () async{
               if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();/*
-                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Result(model: this.model)));*/
+                _formKey.currentState.save();
+                final url ="http://127.0.0.1:5000/login";
+
+                                          
+                //print(username.text);
+                final response = await http.post(
+                  url,
+                  body: json.encode({
+                    'username': username,
+                    'amount': _value,
+                    'cardnumber' : cardnumber,
+                    'cardexpdate' : cardexpdate,
+                    'cardcvv' : cardcvv,
+                    'cardholder' : cardholder
+                  }));
+                  if (response.body == "ok") {/*
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                          Inicio()));*/
+                  }
+                
               }
             },
             child: Text(
