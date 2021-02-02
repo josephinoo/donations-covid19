@@ -9,7 +9,7 @@ class DonarForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Inicio"),
+          title: Text("Confirmar Donación"),
           flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
