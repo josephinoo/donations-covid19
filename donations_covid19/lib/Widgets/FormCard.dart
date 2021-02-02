@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FormCard extends StatelessWidget {
+class FormCard extends StatefulWidget {
+  @override
+  _FormCard createState() => _FormCard();
+}
+
+class _FormCard extends State<FormCard> {
+  var username = TextEditingController();
+  var password = TextEditingController();
+
+  @override
+  void dispose() {
+    username.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,6 +61,7 @@ class FormCard extends StatelessWidget {
                 decoration: InputDecoration(
                     hintText: 'username',
                     hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
+                controller: username,
               ),
               SizedBox(
                 height: ScreenUtil.getInstance().setHeight(30),
@@ -56,27 +72,28 @@ class FormCard extends StatelessWidget {
                     fontSize: ScreenUtil.getInstance().setSp(26),
                   )),
               TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    hintText: 'contraseña',
-                    hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
-              ),
+                  obscureText: true,
+                  decoration: InputDecoration(
+                      hintText: 'contraseña',
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
+                  controller: password),
               SizedBox(
                 height: ScreenUtil.getInstance().setHeight(35),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Text('Olvidaste tu contraseña?',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontFamily: 'Poppins-Medium',
-                        fontSize: ScreenUtil.getInstance().setSp(28),
-                      ))
-                ],
-              )
             ],
           ),
         ));
   }
 }
+
+class GlobalState {
+  final Map<dynamic, dynamic> _data = <dynamic, dynamic>{};
+
+  static GlobalState instance = GlobalState._();
+  GlobalState._();
+
+  set(dynamic key, dynamic value) => _data[key] = value;
+  get(dynamic key) => _data[key];
+}
+
+final GlobalState store = GlobalState.instance;
