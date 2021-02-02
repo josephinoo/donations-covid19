@@ -54,6 +54,7 @@ class _TestFormState extends State<TestForm> {
   @override
   Widget build(BuildContext context) {
     //final halfMediaWidth = MediaQuery.of(context).size.width / 2.0;
+    int _value = 1;
     
     return Center (child: Container (
       margin: EdgeInsets.only(left: 30, top: 100, right: 30, bottom: 50),
@@ -152,7 +153,7 @@ class _TestFormState extends State<TestForm> {
             },
           ),
 
-          MyTextFormField(
+          /*MyTextFormField(
             hintText: 'Cantidad a donar',
             //isEmail: true,
             validator: (String value) {
@@ -164,37 +165,52 @@ class _TestFormState extends State<TestForm> {
             onSaved: (String value) {
               //model.email = value;
             },
-          ),
-          /*
-          MyTextFormField(
-            hintText: 'Password',
-            //isPassword: true,
-            validator: (String value) {
-              if (value.length < 7) {
-                return 'Password should be minimum 7 characters';
-              }
-              _formKey.currentState.save();
-              return null;
-            },
-            onSaved: (String value) {
-              //model.password = value;
-            },
-          ),
-          
-          MyTextFormField(
-            hintText: 'Confirm Password',
-            //isPassword: true,
-            validator: (String value) {
-              if (value.length < 7) {
-                return 'Password should be minimum 7 characters';
-              } /*else if (model.password != null && value != model.password) {
-                print(value);
-                print(model.password);
-                return 'Password not matched';
-              }*/
-              return null;
-            },
           ),*/
+
+          Container(
+            child: Row(
+              
+              children: <Widget>[
+              Expanded(
+                flex: 2,
+              child: Text(
+                'Cantidad a donar',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                //style: TextStyle(fontWeight: FontWeight.bold),
+              )),
+              
+              Expanded(
+                flex: 2,
+              child: DropdownButton(
+              value: _value,
+              items: [
+                DropdownMenuItem(
+                  child: Text("5"),
+                  value: 1,
+                ),
+                DropdownMenuItem(
+                  child: Text("10"),
+                  value: 2,
+                ),
+                DropdownMenuItem(
+                  child: Text("25"),
+                  value: 3
+                ),
+                DropdownMenuItem(
+                    child: Text("50"),
+                    value: 4
+                )
+              ],
+              onChanged: (value) {
+                setState(() {
+                  //_value = value;
+                });
+              }),),
+
+            ],)
+          ),
+
           
           RaisedButton(
             color: Color(0xFF00d4ff),
