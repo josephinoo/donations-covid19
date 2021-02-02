@@ -65,12 +65,20 @@ def update_user(id):
 def donate():
     username=request.json['username']
     amount=request.json['amount']
+    cardnumber=request.json['cardnumber']
+    cardexpdate=request.json['cardexpdate']
+    cardcvv=request.json['cardcvv']
+    cardholder=request.json['cardholder']
     date=str(datetime.datetime.now())
     if(username  and amount):
         id=mongo.db.donations.insert({
             'username':username,
             'amount':amount,
-            'date':date
+            'date':date,
+            'cardnumber':cardnumber,
+            'cardexpdate':cardexpdate,
+            'cardcvv':cardcvv,
+            'cardholder':cardholder
         })
         response={
             'message':'Donation saved'
