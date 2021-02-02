@@ -1,32 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+//import 'package:validators/validators.dart' as validator;
+//import 'model.dart';
+//import 'result.dart';
 
 class DonarForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Confirmar Donación"),
-        flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: <Color>[Color(0xFF17ead9), Color(0xFF00d4ff)]))),
-      ),
-      backgroundColor: Color(0xFFFFFFFF),
-      body: Center(
-          child: Column(
-        children: <Widget>[
-          Image.asset(
-            'assets/thanks.png',
-            width: 330,
-            height: 330,
-          ),
-          TestForm()
-        ],
-      )),
-    );
+        appBar: AppBar(
+          title: Text("Inicio"),
+          flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[
+              Color(0xFF17ead9),
+              Color(0xFF00d4ff)
+            ]))
+            ),
+        ),
+        backgroundColor: Color(0xFFFFFFFF),
+        body: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+             Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Padding(
+                    padding: EdgeInsets.only(top: 20.0),
+                    child: Image.asset('assets/thanks.png')),
+                Expanded(
+                  child: Container(),
+                ),
+                Image.asset('assets/image_02.png'),
+              ],
+            ),
+            TestForm()
+            ]),);
   }
 }
 
@@ -45,7 +57,7 @@ class _TestFormState extends State<TestForm> {
     
     return Center (child: Container (
       margin: EdgeInsets.only(left: 30, top: 100, right: 30, bottom: 50),
-      height: 200,//double.infinity,
+      height: 300,//double.infinity,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -71,9 +83,77 @@ class _TestFormState extends State<TestForm> {
         mainAxisAlignment: MainAxisAlignment.center,
         //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+
+          MyTextFormField(
+            hintText: 'Número de tarjeta de crédito',
+            //isEmail: true,
+            validator: (String value) {
+              /*if (!validator.isEmail(value)) {
+                return 'Please enter a valid email';
+              }*/
+              return null;
+            },
+            onSaved: (String value) {
+              //model.email = value;
+            },
+          ),
+
+          Container(
+            child: Row(
+              
+              children: <Widget>[
+              Expanded(
+                flex: 2,
+              child: MyTextFormField(
+                hintText: 'F.exp.',
+                
+                //isEmail: true,
+                validator: (String value) {
+                  /*if (!validator.isEmail(value)) {
+                    return 'Please enter a valid email';
+                  }*/
+                  return null;
+                },
+                onSaved: (String value) {
+                  //model.email = value;
+                },
+              )),
+              
+              Expanded(
+                flex: 2,
+              child: MyTextFormField(
+                hintText: 'CVV',
+                //isEmail: true,
+                validator: (String value) {
+                  /*if (!validator.isEmail(value)) {
+                    return 'Please enter a valid email';
+                  }*/
+                  return null;
+                },
+                onSaved: (String value) {
+                  //model.email = value;
+                },
+              )),
+
+            ],)
+          ),
           
           MyTextFormField(
-            hintText: 'Cantidad',
+            hintText: 'Titular de tarjeta',
+            //isEmail: true,
+            validator: (String value) {
+              /*if (!validator.isEmail(value)) {
+                return 'Please enter a valid email';
+              }*/
+              return null;
+            },
+            onSaved: (String value) {
+              //model.email = value;
+            },
+          ),
+
+          MyTextFormField(
+            hintText: 'Cantidad a donar',
             //isEmail: true,
             validator: (String value) {
               /*if (!validator.isEmail(value)) {
@@ -128,7 +208,7 @@ class _TestFormState extends State<TestForm> {
               }
             },
             child: Text(
-              'Confirmar',
+              'Donar',
               style: TextStyle(
                 color: Colors.white,
               ),
