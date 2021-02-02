@@ -186,19 +186,19 @@ class _TestFormState extends State<TestForm> {
               value: _value,
               items: [
                 DropdownMenuItem(
-                  child: Text("5"),
+                  child: Text("5 dólares"),
                   value: 1,
                 ),
                 DropdownMenuItem(
-                  child: Text("10"),
+                  child: Text("10 dólares"),
                   value: 2,
                 ),
                 DropdownMenuItem(
-                  child: Text("25"),
+                  child: Text("25 dólares"),
                   value: 3
                 ),
                 DropdownMenuItem(
-                    child: Text("50"),
+                    child: Text("50 dólares"),
                     value: 4
                 )
               ],
