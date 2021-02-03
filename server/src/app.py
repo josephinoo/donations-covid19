@@ -9,11 +9,17 @@ mongo=PyMongo(app)
 
 @app.route("/login",methods=['POST'])
 def login():
+
     users=mongo.db.users
-    login_user=user.find_one({'name': request.form['username']})
-    password=login_user['password'].encode('utf8')
+    request_data=request.data
+    request_data=json.loads(request_data.decode('utf-8'))
+    username=request_data['username']
+    login_user=users.find_one({'username':username})
+    print(login_user)
+    password=login_user['password']
+    print(password)
     if login_user:
-        if(password==request.form['password']):
+        if(password==request_data['password']):
             return 'ok'
         else:
             return "Invalid username/password conbination"
@@ -63,12 +69,16 @@ def update_user(id):
 
 @app.route('/donations',methods=['POST'])
 def donate():
-    username=request.json['username']
-    amount=request.json['amount']
-    cardnumber=request.json['cardnumber']
-    cardexpdate=request.json['cardexpdate']
-    cardcvv=request.json['cardcvv']
-    cardholder=request.json['cardholder']
+    request_data=request.data
+    request_data=json.loads(request_data.decode('utf-8'))
+
+    username=request_data['username']
+    amount=request_data['amount']
+    cardnumber=request_data['cardnumber']
+    cardexpdate=request_data['cardexpdate']
+    cardcvv=request_data['cardcvv']
+    cardholder=request_data['cardholder']
+    centro_salud=request_data['centroSalud']
     date=str(datetime.datetime.now())
     if(username  and amount):
         id=mongo.db.donations.insert({
@@ -78,11 +88,10 @@ def donate():
             'cardnumber':cardnumber,
             'cardexpdate':cardexpdate,
             'cardcvv':cardcvv,
-            'cardholder':cardholder
+            'cardholder':cardholder,
+            'centroSalud':centro_salud
         })
-        response={
-            'message':'Donation saved'
-        }
+        response="ok"
         return response
     else:
         return {'message': 'Error'}
