@@ -33,12 +33,12 @@ class SelectionCentre extends StatelessWidget {
             'centro hospitalario ubicacion ZONA 4	SANTO DOMINGO DE LOS TSÁCHILAS, azual 090101',
         accoutn: '108661050'),
     Locations(
-        name: '	CENTRO DE ATENCIÓN INTEGRAL AL ADULTO MAYOR - PATATE',
+        name: 'CENTRO DE ATENCIÓN INTEGRAL AL ADULTO MAYOR - PATATE',
         description:
             'centro hospitalario ubicacion  gomez y coronel 2301, azual 090101',
         accoutn: '108844150'),
     Locations(
-        name: '	CENTRO DE ATENCIÓN INTEGRAL AL ADULTO MAYOR - PATATE',
+        name: 'CENTRO DE ATENCIÓN INTEGRAL AL ADULTO MAYOR - PATATE',
         description: 'centro hospitalario , azual 090101',
         accoutn: '108833250'),
   ];
