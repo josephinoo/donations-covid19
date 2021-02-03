@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import '../pages/DonarForm.dart';
 import 'DonarForm.dart';
@@ -56,23 +54,6 @@ class SelectionCentre extends StatelessWidget {
                     colors: <Color>[Color(0xFF17ead9), Color(0xFF00d4ff)]))),
       ),
       body: buildListView(context),
-
-      /*SingleChildScrollView(
-          padding: edgeInsets,
-          child: Center(
-              child: Column(
-            children: <Widget>[
-              _cardCentre(context),
-              _cardCentre(context),
-              _cardCentre(context),
-              _cardCentre(context),
-              _cardCentre(context),
-              _cardCentre(context),
-              _cardCentre(context),
-              _cardCentre(context)
-            ],
-          )),
-        )*/
     );
   }
 
@@ -90,7 +71,7 @@ class SelectionCentre extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DonarForm(),
+                        builder: (context) => DonarForm(centre[index].name),
                       ),
                     );
                   }));
@@ -115,8 +96,8 @@ class SelectionCentre extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => DonarForm()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => DonarForm("data")));
             },
           )),
     );
