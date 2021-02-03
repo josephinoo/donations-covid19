@@ -229,10 +229,10 @@ class _TestFormState extends State<TestForm> {
             onPressed: () async{
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
-                final url ="http://127.0.0.1:5000/login";
+                final url ="http://127.0.0.1:5000/donations";
 
                                           
-                //print(username.text);
+                print(_value);
                 final response = await http.post(
                   url,
                   body: json.encode({
@@ -243,12 +243,13 @@ class _TestFormState extends State<TestForm> {
                     'cardcvv' : cardcvv,
                     'cardholder' : cardholder
                   }));
-                  if (response.body == "ok") {/*
+                  print(response.body);
+                  /*if (response.body == "ok") {/*
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) =>
                           Inicio()));*/
-                  }
+                  }*/
                 
               }
             },
