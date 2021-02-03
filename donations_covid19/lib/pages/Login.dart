@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../pages/Inicio.dart';
-import '../Widgets/FormCard.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' show json;
 

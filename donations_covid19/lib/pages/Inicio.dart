@@ -65,8 +65,8 @@ class Inicio extends StatelessWidget {
                     color: Color(0xFF00d4ff), //0xFF6078ea
                     textColor: Colors.white,
                     onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => DonarForm()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SelectionCentre()));
                     },
                   )),
               Container(),
